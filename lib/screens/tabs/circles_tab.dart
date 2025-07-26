@@ -197,6 +197,7 @@ class _CirclesTabState extends State<CirclesTab>
         headerSliverBuilder: (_, __) => [
           SliverAppBar(
             floating: true,
+            pinned: true,
             backgroundColor: Colors.transparent,
             expandedHeight: 120,
             flexibleSpace: FlexibleSpaceBar(
@@ -247,25 +248,39 @@ class _CirclesTabState extends State<CirclesTab>
                     ]),
                   ),
                 ),
-            ),
-            bottom: TabBar(
-              controller: _tabController,
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
               ),
-              tabs: [
-                const Tab(icon: Icon(Icons.groups), text: 'My Circles'),
-                Tab(
-                    icon: const Icon(Icons.mail_outline),
-                    text: 'Invites${_invites.isNotEmpty ? ' (${_invites.length})' : ''}'),
-              ],
             ),
-          )
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(48),
+              child: Container(
+                color: Colors.transparent,
+                child: TabBar(
+                  controller: _tabController,
+                  indicator: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    color:
+                        Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                  ),
+                  labelColor: Theme.of(context).colorScheme.primary,
+                  unselectedLabelColor:
+                      Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                  tabs: [
+                    const Tab(icon: Icon(Icons.groups), text: 'My Circles'),
+                    Tab(
+                      icon: const Icon(Icons.mail_outline),
+                      text:
+                          'Invites${_invites.isNotEmpty ? ' (${_invites.length})' : ''}',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
         body: TabBarView(
           controller: _tabController,
           children: [
+            // Circles List
             _circles.isEmpty
                 ? Center(child: Text('No circles yet'))
                 : ListView.separated(
@@ -286,6 +301,7 @@ class _CirclesTabState extends State<CirclesTab>
                       );
                     },
                   ),
+            // Invites List
             _invites.isEmpty
                 ? Center(child: Text('No pending invites'))
                 : ListView.separated(
