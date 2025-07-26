@@ -8,7 +8,7 @@ class ProfileTab extends StatefulWidget {
 }
 
 class _ProfileTabState extends State<ProfileTab> {
-  final _profile = {
+  final Map<String, dynamic> _profile = {
     'name': 'John Doe',
     'phone': '+1 555-123-4567',
     'shareCount': 5,
@@ -21,7 +21,7 @@ class _ProfileTabState extends State<ProfileTab> {
   }
 
   void _editProfile() {
-    final ctrl = TextEditingfController(text: _profile['name']);
+    final ctrl = TextEditingController(text: _profile['name'] as String);
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
@@ -49,6 +49,9 @@ class _ProfileTabState extends State<ProfileTab> {
 
   @override
   Widget build(BuildContext context) {
+    final String profileName = _profile['name'] as String;
+    final String profilePhone = _profile['phone'] as String;
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: CustomScrollView(slivers: [
@@ -73,46 +76,53 @@ class _ProfileTabState extends State<ProfileTab> {
                 ),
               ),
               child: SafeArea(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Stack(
                   children: [
-                    const SizedBox(height: 20),
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Theme.of(context).colorScheme.surface,
-                      child: Text(
-                        _profile['name'][0],
-                        style: TextStyle(
-                          fontSize: 36,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 20),
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.surface,
+                          child: Text(
+                            profileName.isNotEmpty ? profileName[0] : '',
+                            style: TextStyle(
+                              fontSize: 36,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        Text(profileName,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall
+                                ?.copyWith(color: Colors.white)),
+                        Text(profilePhone,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge
+                                ?.copyWith(color: Colors.white70)),
+                      ],
+                    ),
+                    Positioned(
+                      top: 16,
+                      right: 16,
+                      child: IconButton(
+                        onPressed: _editProfile,
+                        icon: const Icon(Icons.edit_rounded),
+                        style: IconButton.styleFrom(
+                          backgroundColor: Colors.white.withOpacity(0.2),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    Text(_profile['name'],
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineSmall
-                            ?.copyWith(color: Colors.white)),
-                    Text(_profile['phone'],
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge
-                            ?.copyWith(color: Colors.white70)),
                   ],
                 ),
               ),
             ),
-            actions: [
-              IconButton(
-                onPressed: _editProfile,
-                icon: const Icon(Icons.edit_rounded),
-                style: IconButton.styleFrom(
-                  backgroundColor: Colors.white.withOpacity(0.2),
-                ),
-              )
-            ],
           ),
         ),
         SliverPadding(
@@ -120,10 +130,10 @@ class _ProfileTabState extends State<ProfileTab> {
           sliver: SliverList(
             delegate: SliverChildListDelegate([
               Row(children: [
-                _statCard('Circles', _profile['circleCount'],
+                _statCard('Circles', _profile['circleCount'] as int,
                     Icons.groups_rounded, context),
                 const SizedBox(width: 12),
-                _statCard('Shared With', _profile['shareCount'],
+                _statCard('Shared With', _profile['shareCount'] as int,
                     Icons.people_rounded, context),
               ]),
               const SizedBox(height: 24),
