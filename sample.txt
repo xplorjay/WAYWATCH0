@@ -1,1 +1,3 @@
 This is a preview file for github changelog.
+
+Need to find situation at the time of launch that pushes potential users to utilise the app
