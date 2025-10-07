@@ -41,7 +41,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyALJyyWX4n1ilweLWxLTOvqgy0GXHFb7z8',
+    apiKey: '',
     appId: '1:848570118368:web:4a0078ed8a861bdfb96085',
     messagingSenderId: '848570118368',
     projectId: 'waywatch0',
@@ -50,7 +50,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCLSEMlbfXDW3UB6u4boGp_u6zTu_EEpWQ',
+    apiKey: '',
     appId: '1:848570118368:android:e68bd3f7f6e19d6db96085',
     messagingSenderId: '848570118368',
     projectId: 'waywatch0',
@@ -58,7 +58,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAxHl0fcNfDh6QONHjxnodQwvkoggxcubE',
+    apiKey: '',
     appId: '1:848570118368:ios:50d018cdfdb12e3ab96085',
     messagingSenderId: '848570118368',
     projectId: 'waywatch0',
