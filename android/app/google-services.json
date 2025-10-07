@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "848570118368",
+    "project_id": "waywatch0",
+    "storage_bucket": "waywatch0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848570118368:android:e68bd3f7f6e19d6db96085",
+        "android_client_info": {
+          "package_name": "com.example.waywatch0"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLSEMlbfXDW3UB6u4boGp_u6zTu_EEpWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
