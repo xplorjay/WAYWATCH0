@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'screens/home_screen.dart';
+import 'theme_provider.dart';
 
 void main() {
-  runApp(const WayWatchApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const WayWatchApp(),
+    ),
+  );
 }
 
 class WayWatchApp extends StatelessWidget {
@@ -10,14 +17,16 @@ class WayWatchApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'WayWatch',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
-        useMaterial3: true,
-        fontFamily: 'Roboto',
-      ),
-      home: const HomeScreen(),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, _) {
+        return MaterialApp(
+          title: 'WayWatch',
+          theme: themeProvider.getLightTheme(),
+          darkTheme: themeProvider.getDarkTheme(),
+          themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+          home: const HomeScreen(),
+        );
+      },
     );
   }
 }

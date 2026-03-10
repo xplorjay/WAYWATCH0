@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).colorScheme.shadow.withOpacity(0.1),
+              color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.1),
               blurRadius: 10,
               offset: const Offset(0, -2),
             ),
@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
             selectedItemColor: Theme.of(context).colorScheme.primary,
             unselectedItemColor: Theme.of(
               context,
-            ).colorScheme.onSurface.withOpacity(0.6),
+            ).colorScheme.onSurface.withValues(alpha: 0.6),
             backgroundColor: Theme.of(context).colorScheme.surface,
             type: BottomNavigationBarType.fixed,
             items: const [

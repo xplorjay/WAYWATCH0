@@ -58,7 +58,7 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.3),
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -116,8 +116,8 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                    Theme.of(context).colorScheme.tertiary.withOpacity(0.05),
+                    Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+                    Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.05),
                   ],
                 ),
               ),
@@ -136,7 +136,7 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
                                   color: Theme.of(context)
                                       .colorScheme
                                       .onSurface
-                                      .withOpacity(0.7),
+                                      .withValues(alpha: 0.7),
                                 )),
                         Text(widget.userName,
                             style: Theme.of(context)
@@ -161,11 +161,11 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
                               ? Theme.of(context)
                                   .colorScheme
                                   .error
-                                  .withOpacity(0.1)
+                                  .withValues(alpha: 0.1)
                               : Theme.of(context)
                                   .colorScheme
                                   .surface
-                                  .withOpacity(0.8),
+                                  .withValues(alpha: 0.8),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Icon(
@@ -177,7 +177,7 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
                               : Theme.of(context)
                                   .colorScheme
                                   .onSurface
-                                  .withOpacity(0.7),
+                                  .withValues(alpha: 0.7),
                         ),
                       ),
                     ),
@@ -198,14 +198,14 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
                     color:
-                        Theme.of(context).colorScheme.outline.withOpacity(0.1),
+                        Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: Theme.of(context)
                           .colorScheme
                           .shadow
-                          .withOpacity(0.05),
+                          .withValues(alpha: 0.05),
                       blurRadius: 10,
                       offset: const Offset(0, 2),
                     )
@@ -234,7 +234,7 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
                             if (!_isGhostModeActive)
                               BoxShadow(
                                 color: Colors.green
-                                    .withOpacity(0.3 * _pulseController.value),
+                                    .withValues(alpha: 0.3 * _pulseController.value),
                                 blurRadius: 8,
                                 spreadRadius: 2,
                               )
@@ -278,16 +278,16 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
                       Theme.of(context)
                           .colorScheme
                           .primaryContainer
-                          .withOpacity(0.3),
+                          .withValues(alpha: 0.3),
                       Theme.of(context)
                           .colorScheme
                           .tertiaryContainer
-                          .withOpacity(0.2),
+                          .withValues(alpha: 0.2),
                     ],
                   ),
                   border: Border.all(
                     color:
-                        Theme.of(context).colorScheme.outline.withOpacity(0.1),
+                        Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
                   ),
                 ),
                 child: Stack(children: [
@@ -297,7 +297,7 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
                       color: Theme.of(context)
                           .colorScheme
                           .onSurface
-                          .withOpacity(0.1),
+                          .withValues(alpha: 0.1),
                     ),
                   ),
                   const Center(
@@ -347,13 +347,13 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
           color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
           ),
         ),
         child: Column(children: [
           Icon(Icons.people_outline,
               size: 48,
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.4)),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.4)),
           const SizedBox(height: 16),
           Text('Your circle is empty',
               style: Theme.of(context)
@@ -367,7 +367,7 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
                   color: Theme.of(context)
                       .colorScheme
                       .onSurface
-                      .withOpacity(0.7))),
+                      .withValues(alpha: 0.7))),
         ]),
       );
 
@@ -377,7 +377,7 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
           color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
           ),
         ),
         child: Row(children: [
@@ -398,7 +398,7 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
                       color: Theme.of(context)
                           .colorScheme
                           .onSurface
-                          .withOpacity(0.6))),
+                          .withValues(alpha: 0.6))),
             ]),
           ),
           Container(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../theme_provider.dart';
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
@@ -67,11 +69,11 @@ class _ProfileTabState extends State<ProfileTab> {
                     Theme.of(context)
                         .colorScheme
                         .primaryContainer
-                        .withOpacity(0.8),
+                        .withValues(alpha: 0.8),
                     Theme.of(context)
                         .colorScheme
                         .tertiaryContainer
-                        .withOpacity(0.6),
+                        .withValues(alpha: 0.6),
                   ],
                 ),
               ),
@@ -115,7 +117,7 @@ class _ProfileTabState extends State<ProfileTab> {
                         onPressed: _editProfile,
                         icon: const Icon(Icons.edit_rounded),
                         style: IconButton.styleFrom(
-                          backgroundColor: Colors.white.withOpacity(0.2),
+                          backgroundColor: Colors.white.withValues(alpha: 0.2),
                         ),
                       ),
                     ),
@@ -155,6 +157,18 @@ class _ProfileTabState extends State<ProfileTab> {
                   'Auto share new places', _autoShare, (v) {
                 setState(() => _autoShare = v);
               }),
+              const Divider(),
+              Consumer<ThemeProvider>(
+                builder: (context, themeProvider, _) {
+                  return _switchTile(
+                    Icons.dark_mode_rounded,
+                    'Dark Mode',
+                    'Use dark theme',
+                    themeProvider.isDarkMode,
+                    (_) => themeProvider.toggleTheme(),
+                  );
+                },
+              ),
               const SizedBox(height: 24),
               ListTile(
                 leading: const Icon(Icons.lock_rounded),
@@ -181,14 +195,14 @@ class _ProfileTabState extends State<ProfileTab> {
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: color.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(children: [
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.2),
+              color: color.withValues(alpha: 0.2),
               shape: BoxShape.circle,
             ),
             child: Icon(icon, color: color),
@@ -201,7 +215,7 @@ class _ProfileTabState extends State<ProfileTab> {
                   ?.copyWith(fontWeight: FontWeight.bold, color: color)),
           Text(title,
               style: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(ctx).colorScheme.onSurface.withOpacity(0.7))),
+                  color: Theme.of(ctx).colorScheme.onSurface.withValues(alpha: 0.7))),
         ]),
       ),
     );
@@ -215,7 +229,7 @@ class _ProfileTabState extends State<ProfileTab> {
       title: Text(title),
       subtitle: Text(subtitle),
       secondary: Icon(icon),
-      activeColor: Theme.of(context).colorScheme.primary,
+      activeThumbColor: Theme.of(context).colorScheme.primary,
     );
   }
 }

@@ -86,12 +86,12 @@ class _CirclesTabState extends State<CirclesTab>
               const Text('Icon:'),
               const SizedBox(width: 8),
               IconButton(
-                icon: Icon(Icons.group),
+                icon: const Icon(Icons.group),
                 color: icon == Icons.group ? color : null,
                 onPressed: () => setState(() => icon = Icons.group),
               ),
               IconButton(
-                icon: Icon(Icons.family_restroom),
+                icon: const Icon(Icons.family_restroom),
                 color: icon == Icons.family_restroom ? color : null,
                 onPressed: () =>
                     setState(() => icon = Icons.family_restroom),
@@ -117,7 +117,7 @@ class _CirclesTabState extends State<CirclesTab>
                     ),
                   ),
                 );
-              }).toList()
+              })
             ]),
           ]),
           actions: [
@@ -165,7 +165,7 @@ class _CirclesTabState extends State<CirclesTab>
                 style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 16),
             Row(children: [
-              Expanded(child: Text('waywatch.app/join/abc123')),
+              const Expanded(child: Text('waywatch.app/join/abc123')),
               IconButton(
                 icon: const Icon(Icons.copy),
                 onPressed: () {
@@ -208,11 +208,11 @@ class _CirclesTabState extends State<CirclesTab>
                       Theme.of(context)
                           .colorScheme
                           .primaryContainer
-                          .withOpacity(0.3),
+                          .withValues(alpha: 0.3),
                       Theme.of(context)
                           .colorScheme
                           .tertiaryContainer
-                          .withOpacity(0.2),
+                          .withValues(alpha: 0.2),
                     ],
                   ),
                 ),
@@ -237,7 +237,7 @@ class _CirclesTabState extends State<CirclesTab>
                                       color: Theme.of(context)
                                           .colorScheme
                                           .onSurface
-                                          .withOpacity(0.7))),
+                                          .withValues(alpha: 0.7))),
                         ],
                       ),
                       const Spacer(),
@@ -259,11 +259,11 @@ class _CirclesTabState extends State<CirclesTab>
                   indicator: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
                     color:
-                        Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                        Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
                   ),
                   labelColor: Theme.of(context).colorScheme.primary,
                   unselectedLabelColor:
-                      Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                      Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                   tabs: [
                     const Tab(icon: Icon(Icons.groups), text: 'My Circles'),
                     Tab(
@@ -282,7 +282,7 @@ class _CirclesTabState extends State<CirclesTab>
           children: [
             // Circles List
             _circles.isEmpty
-                ? Center(child: Text('No circles yet'))
+                ? const Center(child: Text('No circles yet'))
                 : ListView.separated(
                     padding: const EdgeInsets.all(16),
                     itemCount: _circles.length,
@@ -303,7 +303,7 @@ class _CirclesTabState extends State<CirclesTab>
                   ),
             // Invites List
             _invites.isEmpty
-                ? Center(child: Text('No pending invites'))
+                ? const Center(child: Text('No pending invites'))
                 : ListView.separated(
                     padding: const EdgeInsets.all(16),
                     itemCount: _invites.length,
