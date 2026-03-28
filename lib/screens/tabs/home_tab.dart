@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 class HomeTab extends StatefulWidget {
   final String userName;
@@ -17,6 +18,42 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
   late AnimationController _pulseController;
   bool _isGhostModeActive = false;
+  String _locationMessage = 'Tap the button to get your current location';
+
+  Future<void> _getCurrentLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      setState(() => _locationMessage = 'Location services are disabled.');
+      return;
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        setState(() => _locationMessage = 'Location permissions are denied.');
+        return;
+      }
+    }
+    
+    if (permission == LocationPermission.deniedForever) {
+      setState(() => _locationMessage = 'Location permissions are permanently denied.');
+      return;
+    } 
+
+    setState(() => _locationMessage = 'Fetching location...');
+    try {
+      Position position = await Geolocator.getCurrentPosition();
+      setState(() {
+        _locationMessage = 'Lat: ${position.latitude.toStringAsFixed(4)}\nLng: ${position.longitude.toStringAsFixed(4)}';
+      });
+    } catch (e) {
+      setState(() => _locationMessage = 'Failed to get location.');
+    }
+  }
 
   @override
   void initState() {
@@ -266,6 +303,42 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin {
                     },
                   )
                 ]),
+              ),
+              const SizedBox(height: 24),
+              // Location Section
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.05),
+                      blurRadius: 10,
+                      offset: const Offset(0, 2),
+                    )
+                  ],
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      _locationMessage,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    FilledButton.icon(
+                      onPressed: _getCurrentLocation,
+                      icon: const Icon(Icons.my_location),
+                      label: const Text('Get Current Location'),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 24),
               // Map Placeholder
